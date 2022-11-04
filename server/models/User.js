@@ -1,11 +1,11 @@
 const mongoose = require('mongoose')
 
 const schema = new mongoose.Schema({
-  uid: { type: String },
+  uid: { type: String }, 
   username: { type: String, required: true },
   password: {
     type: String,
-    select: true,
+    select: true, 
     set(val) {
       return require('bcrypt').hashSync(val, 10)
     },
