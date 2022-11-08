@@ -43,7 +43,7 @@ module.exports = app => {
     }
     // 生成token - 登录凭证
     const token = jwt.sign({ id: user._id }, "dnaoi7&*(*69{}[sds2]")
-    res.send({ token })
+    res.send({ code: 200, message: '登录成功', token })
   })
 
   // 错误处理函数

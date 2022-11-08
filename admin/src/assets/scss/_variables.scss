@@ -1,0 +1,7 @@
+// theme colors
+$colors: (
+  'primary': #3ded3d,
+  'grey': #c9c9cc
+);
+
+$border-color: map-get($colors, 'grey');
