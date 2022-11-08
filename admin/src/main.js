@@ -7,10 +7,8 @@ Vue.config.productionTip = false
 import './assets/scss/style.scss'
 import router from './router'
 
-import axios from 'axios'
-Vue.prototype.$http = axios.create({
-  baseURL: 'http://localhost:5000/admin/api',
-})
+import http from './http'
+Vue.prototype.$http = http
 
 new Vue({
   router,

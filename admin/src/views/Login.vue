@@ -27,15 +27,11 @@ export default {
   methods: {
     async login() {
       const res = await this.$http.post("login", this.model);
-      console.log(res.data.code === 401);
-      if (res.data.code >= 400 && res.data.code < 500) {
-        this.$message.error("账号或密码错误！");
-      } else {
-        this.$message({
-          message: res.data.message,
-          type: "success",
-        });
-      }
+      localStorage.token  = res.data.token
+      this.$message({
+        type: "success",
+        message: '登录成功！'
+      });
     },
   },
 };

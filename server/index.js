@@ -1,5 +1,6 @@
 const express = require('express')
 const config = require('config')
+const chalk = require('chalk')
 const session = require('express-session')
 const cookieParser = require('cookie-parser')
 const app = express()
@@ -25,5 +26,6 @@ require('./routes/admin')(app)
 require('./routes/web')(app)
 
 app.listen(config.get('server.port'), function () {
-  console.log(`服务启动...| 端口【${config.get('server.port')}】监听中`);
+
+  console.log(chalk.bgMagenta(`服务启动...| 端口【${config.get('server.port')}】监听中`));
 })

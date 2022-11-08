@@ -34,16 +34,16 @@ module.exports = app => {
     // 用户校验
     const user = await AdminUser.findOne({ username }).select('+password')
     if (!user) {
-      return res.send({ code: 401, message: "用户不存在！" })
+      return res.status(412).send({ message: "用户不存在！" })
     }
     // 密码校验
     const isValid = require('bcrypt').compareSync(password, user.password)
     if (!isValid) {
-      return res.send({ code: 402, message: "密码错误！" })
+      return res.status(412).send({ message: "密码错误！" })
     }
     // 生成token - 登录凭证
     const token = jwt.sign({ id: user._id }, "dnaoi7&*(*69{}[sds2]")
-    res.send({ code: 200, message: '登录成功', token })
+    res.status(200).send({ message: '登录成功', token })
   })
 
   // 错误处理函数
