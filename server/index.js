@@ -27,5 +27,5 @@ require('./routes/web')(app)
 
 app.listen(config.get('server.port'), function () {
 
-  console.log(chalk.bgMagenta(`服务启动...| 端口【${config.get('server.port')}】监听中`));
+  console.log(chalk.bgMagenta(`服务启动 端口【${config.get('server.port')}】监听中...`));
 })

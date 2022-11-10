@@ -1,6 +1,6 @@
 <template>
   <div id="login" class="border-color">
-    <el-form>
+    <el-form @submit.native.prevent @keyup.enter.native="login">
       <h2>管理员</h2>
       <hr />
       <el-form-item label="账号">
@@ -27,10 +27,11 @@ export default {
   methods: {
     async login() {
       const res = await this.$http.post("login", this.model);
-      localStorage.token  = res.data.token
+      localStorage.token = res.data.token;
+      this.$router.push("/");
       this.$message({
         type: "success",
-        message: '登录成功！'
+        message: "登录成功！",
       });
     },
   },
