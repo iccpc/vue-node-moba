@@ -3,11 +3,17 @@ module.exports = app => {
   const jwt = require('jsonwebtoken')
   const assert = require('http-assert')
   const svgCaptcha = require('svg-captcha')
-  const router = express.Router()
+  const router = express.Router({
+    mergeParams: true
+  })
 
   const AdminUser = require('../../models/AdminUser')
 
-  router.get('/register', function (req, res) {
+  const authMiddleware = require('../../middleware/auth')
+  app.use('/admin/api/rest/:resource', router)
+
+  // 验证码
+  app.get('/admin/api/captcha', (req, res) => {
     let captcha = svgCaptcha.create({
       size: 4,
       ignoreChars: '0o1i',
@@ -19,36 +25,30 @@ module.exports = app => {
     res.status(200).send(captcha.data)
   })
 
-  router.post('/register', function (req, res) {
+  app.post('/admin/api/captcha', (req, res, next) => {
     if (String(req.session.captcha).toLowerCase() !== req.body.check) {
-      res.status(200).send({ code: 400, message: "验证码不正确！" })
+      return res.status(200).send({ code: 400, message: "验证码不正确！" })
     }
-    res.send({ code: 100, message: "验证通过" })
+    res.send({ code: 200, message: "验证通过" })
   })
 
-  app.use('/admin/api', router)
-
+  // 登录
   app.post('/admin/api/login', async (req, res) => {
     // await AdminUser.insertMany({username, password})
     const { username, password } = req.body
-    // 用户校验
+    // 1. 用户校验
     const user = await AdminUser.findOne({ username }).select('+password')
-    if (!user) {
-      return res.status(412).send({ message: "用户不存在！" })
-    }
-    // 密码校验
+    assert(user, 422, '用户不存在！')
+    // 2. 密码校验
     const isValid = require('bcrypt').compareSync(password, user.password)
-    if (!isValid) {
-      return res.status(412).send({ message: "密码错误！" })
-    }
-    // 生成token - 登录凭证
-    const token = jwt.sign({ id: user._id }, "dnaoi7&*(*69{}[sds2]")
+    assert(isValid, 422, '密码错误！')
+    // 3. 生成token - 登录凭证
+    const token = jwt.sign({ id: user._id }, app.get('secret'))
     res.status(200).send({ message: '登录成功', token })
   })
 
   // 错误处理函数
-  app.use(async (err, req, res, next) => {
-    // console.log(err)
+  app.use((err, req, res, next) => {
     res.status(err.statusCode || 500).send({
       message: err.message
     })

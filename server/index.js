@@ -2,8 +2,9 @@ const express = require('express')
 const config = require('config')
 const chalk = require('chalk')
 const session = require('express-session')
-const cookieParser = require('cookie-parser')
 const app = express()
+ 
+app.set('secret', 'dnaoi7&*(*69{$#}[sds2]ssdsd4884[]')
 
 // 跨域及信息交换格式设置
 app.use(express.json())

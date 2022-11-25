@@ -3,9 +3,6 @@
     <el-menu
       default-active="1-4-1"
       class="el-menu-vertical-demo"
-      @open="handleOpen"
-      @close="handleClose"
-      :collapse="isCollapse"
       style="height:100vh"
     >
       <el-submenu index="1">
@@ -50,4 +47,5 @@
 </style>
 
 <script>
+
 </script>
