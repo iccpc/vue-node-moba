@@ -3,7 +3,7 @@ const config = require('config')
 const chalk = require('chalk')
 const session = require('express-session')
 const app = express()
- 
+
 app.set('secret', 'dnaoi7&*(*69{$#}[sds2]ssdsd4884[]')
 
 // 跨域及信息交换格式设置
@@ -26,7 +26,6 @@ require('./plugins/db')(app)
 require('./routes/admin')(app)
 require('./routes/web')(app)
 
-app.listen(config.get('server.port'), function () {
-
-  console.log(chalk.bgMagenta(`服务启动 端口【${config.get('server.port')}】监听中...`));
+app.listen(5000, function () {
+  console.log(`http://localhost:5000`);
 })

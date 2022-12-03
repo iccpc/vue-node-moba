@@ -9,8 +9,40 @@ module.exports = app => {
 
   const AdminUser = require('../../models/AdminUser')
 
+  // 自定义中间件
   const authMiddleware = require('../../middleware/auth')
-  app.use('/admin/api/rest/:resource', router)
+  const resource = require('../../middleware/resource')
+
+  router.get('/', async (req, res) => {
+    const queryOptions = {}
+    if (req.Model.modelName === 'Category') {
+      queryOptions.populate = 'parent'
+    }
+    const items = await req.Model.find().setOptions(queryOptions).limit(10)
+    res.send(items)
+  })
+
+  router.get('/:id', async (req, res) => {
+    const model = await req.Model.findById(req.params.id)
+    res.send(model)
+  })
+
+  router.put('/:id', async (req, res) => {
+    const model = await req.Model.findByIdAndUpdate(req.params.id, req.body)
+    res.send(model)
+  })
+
+  router.delete('/:id', async (req, res) => {
+    const model = await req.Model.findByIdAndDelete(req.params.id)
+    res.send(model)
+  })
+
+  router.post('/', async (req, res) => {
+    const model = await req.Model.create(req.body)
+    res.send(model)
+  })
+
+  app.use('/admin/api/rest/:resource', authMiddleware(), resource(), router)
 
   // 验证码
   app.get('/admin/api/captcha', (req, res) => {
@@ -33,18 +65,24 @@ module.exports = app => {
   })
 
   // 登录
-  app.post('/admin/api/login', async (req, res) => {
+  app.post('/admin/api/login', async (req, res, next) => {
     // await AdminUser.insertMany({username, password})
     const { username, password } = req.body
-    // 1. 用户校验
-    const user = await AdminUser.findOne({ username }).select('+password')
-    assert(user, 422, '用户不存在！')
-    // 2. 密码校验
-    const isValid = require('bcrypt').compareSync(password, user.password)
-    assert(isValid, 422, '密码错误！')
-    // 3. 生成token - 登录凭证
-    const token = jwt.sign({ id: user._id }, app.get('secret'))
-    res.status(200).send({ message: '登录成功', token })
+
+    try {
+      // 1. 用户校验
+      const user = await AdminUser.findOne({ username }).select('+password')
+      assert(user, 422, '用户不存在！')
+      // 2. 密码校验
+      const isValid = require('bcrypt').compareSync(password, user.password)
+      assert(isValid, 422, '密码错误！')
+      // 3. 生成token - 登录凭证
+      const token = jwt.sign({ id: user._id }, app.get('secret'), { expiresIn: "1h" })
+      res.status(200).send({ message: '登录成功', token })
+    } catch (err) {
+      next(err)
+    }
+
   })
 
   // 错误处理函数
