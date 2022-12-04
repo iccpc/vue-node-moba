@@ -13,7 +13,7 @@ module.exports = options => {
       const token = String(req.headers.authorization || '').split(' ').pop()
       assert(token, 401, '未登录')
 
-      // 2. 校验token令牌是否合法
+      // 2. 校验token令牌是否合法 
       const { id } = jwt.verify(token, req.app.get('secret'))
       assert(id, 401, 'token不合法')
 

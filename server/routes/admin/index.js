@@ -64,6 +64,15 @@ module.exports = app => {
     res.send({ code: 200, message: "验证通过" })
   })
 
+  const multer = require('multer')
+  const upload = multer({ dest: __dirname + '/../../uploads' })
+  // 上传文件
+  app.post('/admin/api/upload', upload.single('file'), async (req, res) => {
+    const file = req.file
+    file.url = `http://localhost:5000/uploads/${file.filename}`
+    res.send(file)
+  })
+
   // 登录
   app.post('/admin/api/login', async (req, res, next) => {
     // await AdminUser.insertMany({username, password})
@@ -77,7 +86,10 @@ module.exports = app => {
       const isValid = require('bcrypt').compareSync(password, user.password)
       assert(isValid, 422, '密码错误！')
       // 3. 生成token - 登录凭证
-      const token = jwt.sign({ id: user._id }, app.get('secret'), { expiresIn: "1h" })
+      const rules = {
+        id: user._id
+      }
+      const token = jwt.sign(rules, app.get('secret'), { expiresIn: "1h" })
       res.status(200).send({ message: '登录成功', token })
     } catch (err) {
       next(err)
@@ -87,7 +99,7 @@ module.exports = app => {
 
   // 错误处理函数
   app.use((err, req, res, next) => {
-    res.status(err.statusCode || 500).send({
+    return res.status(err.statusCode || 500).send({
       message: err.message
     })
   })

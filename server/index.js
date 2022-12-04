@@ -9,6 +9,8 @@ app.set('secret', 'dnaoi7&*(*69{$#}[sds2]ssdsd4884[]')
 // 跨域及信息交换格式设置
 app.use(express.json())
 app.use(require('cors')())
+// 静态文件托管
+app.use('/uploads', express.static(__dirname + '/uploads'))
 app.use(express.urlencoded({ extended: false }))
 
 // session配置

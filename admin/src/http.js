@@ -24,10 +24,17 @@ http.interceptors.response.use(function (response) {
   return response;
 }, function (error) {
   if (error.response.data.message) {
-    Vue.prototype.$message({
-      type: 'error',
-      message: error.response.data.message
-    })
+    if (error.response.data.message === 'jwt expired') {
+      Vue.prototype.$message({
+        type: 'error',
+        message: '身份过期，请重新登录！'
+      })
+    } else {
+      Vue.prototype.$message({
+        type: 'error',
+        message: error.response.data.message
+      })
+    }
   }
   return Promise.reject(error);
 });

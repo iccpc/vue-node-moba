@@ -3,8 +3,13 @@ import VueRouter from 'vue-router'
 
 import Login from '../views/Login'
 import Home from '../views/Home'
-import CategoryEdit from '../views/CategoryEdit.vue'
+
+import CategoryEdit from '../views/CategoryEdit'
 import CategoryList from '../views/CategoryList'
+
+import ItemEdit from '../views/ItemEdit'
+import ItemList from '../views/ItemList'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -18,8 +23,12 @@ const routes = [
     component: Home,
     children: [
       { path: '/categories/create', component: CategoryEdit },
-      { path: '/categories/edit/:id', component: CategoryEdit, props: true}, // 将页面的id通过地址注入页面
-      { path: '/categories/list', component: CategoryList }
+      { path: '/categories/edit/:id', component: CategoryEdit, props: true }, // 将页面的id通过地址注入页面
+      { path: '/categories/list', component: CategoryList },
+
+      { path: '/items/create', component: ItemEdit },
+      { path: '/items/edit/:id', component: ItemEdit, props: true }, // 将页面的id通过地址注入页面
+      { path: '/items/list', component: ItemList, props: true }
     ]
   }
 ]

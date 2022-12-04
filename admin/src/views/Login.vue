@@ -34,19 +34,9 @@ export default {
         message: "登录成功！",
       });
     },
-    frush() {
-      if (localStorage.token) {
-        this.$router.push("/")
-        this.$message({
-        type: "warning",
-        message: "您已登录！",
-      });
-      }
-    },
   },
   created() {
     // 若用户登录在token过期时间内无法返回登录界面
-    this.frush()
   },
 };
 </script>
