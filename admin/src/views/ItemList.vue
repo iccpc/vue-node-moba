@@ -2,8 +2,8 @@
   <div>
     <el-table style="width: 100%" :data="items">
       <el-table-column prop="_id" label="ID" width="220" />
-      <el-table-column prop="name" label="名称" width="180" />
-      <el-table-column prop="icon" label="图标" width="180">
+      <el-table-column prop="name" label="标题" width="180" />
+      <el-table-column prop="icon" label="封面" width="180">
         <template slot-scope="scope">
           <img :src="scope.row.icon" style="height: 3rem" alt="">
         </template>

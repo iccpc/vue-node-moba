@@ -13,9 +13,9 @@
               <el-menu-item index="/categories/list">分类列表</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
-              <template slot="title">物品</template>
-              <el-menu-item index="/items/create">新增物品</el-menu-item>
-              <el-menu-item index="/items/list">物品列表</el-menu-item>
+              <template slot="title">博文</template>
+              <el-menu-item index="/items/create">新增博文</el-menu-item>
+              <el-menu-item index="/items/list">博文列表</el-menu-item>
             </el-menu-item-group>
             <el-submenu index="1-4">
               <template slot="title">选项4</template>
