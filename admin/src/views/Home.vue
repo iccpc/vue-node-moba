@@ -17,10 +17,11 @@
               <el-menu-item index="/items/create">新增博文</el-menu-item>
               <el-menu-item index="/items/list">博文列表</el-menu-item>
             </el-menu-item-group>
-            <el-submenu index="1-4">
-              <template slot="title">选项4</template>
-              <el-menu-item index="1-4-1">选项4-1</el-menu-item>
-            </el-submenu>
+             <el-menu-item-group>
+              <template slot="title">英雄</template>
+              <el-menu-item index="/heroes/create">新增英雄</el-menu-item>
+              <el-menu-item index="/heroes/list">英雄列表</el-menu-item>
+            </el-menu-item-group>
           </el-submenu>
           <el-submenu index="2">
             <template slot="title"><i class="el-icon-menu"></i>导航二</template>
