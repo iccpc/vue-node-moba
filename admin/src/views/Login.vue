@@ -46,7 +46,6 @@ export default {
 #login {
   margin: 120px auto;
   padding: 5px 15px;
-
   width: 300px;
   height: 380px;
 }

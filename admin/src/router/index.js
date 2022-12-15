@@ -13,35 +13,42 @@ import ItemList from '../views/ItemList'
 import HeroEdit from '../views/HeroEdit'
 import HeroList from '../views/HeroList'
 
+import ArticleEdit from '../views/ArticleEdit'
+import ArticleList from '../views/ArticleList'
+
 Vue.use(VueRouter)
 
 const routes = [
-  {
-    path: '/login',
-    name: 'login',
-    component: Login
-  }, {
-    path: '/',
-    name: 'home',
-    component: Home,
-    children: [
-      { path: '/categories/create', component: CategoryEdit },
-      { path: '/categories/edit/:id', component: CategoryEdit, props: true }, // 将页面的id通过地址注入页面
-      { path: '/categories/list', component: CategoryList },
+	{
+		path: '/login',
+		name: 'login',
+		component: Login
+	}, {
+		path: '/',
+		name: 'home',
+		component: Home,
+		children: [
+			{ path: '/categories/create', component: CategoryEdit },
+			{ path: '/categories/edit/:id', component: CategoryEdit, props: true }, // 将页面的id通过地址注入页面
+			{ path: '/categories/list', component: CategoryList },
 
-      { path: '/items/create', component: ItemEdit },
-      { path: '/items/edit/:id', component: ItemEdit, props: true }, // 将页面的id通过地址注入页面
-      { path: '/items/list', component: ItemList, props: true },
+			{ path: '/items/create', component: ItemEdit },
+			{ path: '/items/edit/:id', component: ItemEdit, props: true }, // 将页面的id通过地址注入页面
+			{ path: '/items/list', component: ItemList, props: true },
 
-      { path: '/heroes/create', component: HeroEdit },
-      { path: '/heroes/edit/:id', component: HeroEdit, props: true }, // 将页面的id通过地址注入页面
-      { path: '/heroes/list', component: HeroList, props: true },
-    ]
-  }
+			{ path: '/heroes/create', component: HeroEdit },
+			{ path: '/heroes/edit/:id', component: HeroEdit, props: true }, // 将页面的id通过地址注入页面
+			{ path: '/heroes/list', component: HeroList, props: true },
+
+			{ path: '/articles/create', component: ArticleEdit },
+			{ path: '/articles/edit/:id', component: ArticleEdit, props: true }, // 将页面的id通过地址注入页面
+			{ path: '/articles/list', component: ArticleList, props: true },
+		]
+	}
 ]
 
 const router = new VueRouter({
-  routes
+	routes
 })
 
 export default router
