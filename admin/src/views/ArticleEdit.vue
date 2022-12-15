@@ -20,7 +20,7 @@
         ></el-input>
       </el-form-item>
       <el-form-item label="详情">
-        <vue-editor v-model="model.body"></vue-editor>
+        <vue-editor v-model="model.body"></vue-editor> 
       </el-form-item>
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
