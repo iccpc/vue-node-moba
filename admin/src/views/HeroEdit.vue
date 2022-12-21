@@ -47,6 +47,16 @@
               ></el-option>
             </el-select>
           </el-form-item>
+					<el-form-item label="逆风出装">
+            <el-select v-model="model.items2" multiple>
+              <el-option
+                v-for="item of items"
+                :key="item._id"
+                :label="item.name"
+                :value="item._id"
+              ></el-option>
+            </el-select>
+          </el-form-item>
           <el-form-item label="头像">
             <el-upload
               class="avatar-uploader"
@@ -169,7 +179,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .rate {
   margin-top: 0.6rem;
 }

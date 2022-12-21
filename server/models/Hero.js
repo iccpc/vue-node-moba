@@ -23,7 +23,7 @@ const schema = new mongoose.Schema({
 	// 顺风出装
 	items1: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
 	// 逆风出装
-	items1: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
+	items2: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Item' }],
 	usageTips: { type: String },
 	battleTips: { type: String },
 	teamTips: { type: String },

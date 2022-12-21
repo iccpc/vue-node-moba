@@ -20,9 +20,11 @@ module.exports = options => {
       // 3. 查询用户是否存在
       req.user = await AdminUser.findById(id)
       assert(req.user, 401, '账号不存在')
-
+			
+			// 通过验证
       await next()
     } catch (err) {
+			// 未通过验证，抛出错误
       await next(err)
     }
   }

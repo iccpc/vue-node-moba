@@ -16,6 +16,9 @@ import HeroList from '../views/HeroList'
 import ArticleEdit from '../views/ArticleEdit'
 import ArticleList from '../views/ArticleList'
 
+import AdEdit from '../views/AdEdit'
+import AdList from '../views/AdList'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -43,6 +46,10 @@ const routes = [
 			{ path: '/articles/create', component: ArticleEdit },
 			{ path: '/articles/edit/:id', component: ArticleEdit, props: true }, // 将页面的id通过地址注入页面
 			{ path: '/articles/list', component: ArticleList, props: true },
+
+			{ path: '/ads/create', component: AdEdit },
+			{ path: '/ads/edit/:id', component: AdEdit, props: true }, // 将页面的id通过地址注入页面
+			{ path: '/ads/list', component: AdList, props: true },
 		]
 	}
 ]
