@@ -15,7 +15,7 @@ module.exports = options => {
 
       // 2. 校验token令牌是否合法 
       const { id } = jwt.verify(token, req.app.get('secret'))
-      assert(id, 401, 'token不合法')
+      assert(id, 401, '未登录')
 
       // 3. 查询用户是否存在
       req.user = await AdminUser.findById(id)

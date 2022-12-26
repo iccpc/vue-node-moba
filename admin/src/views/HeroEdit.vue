@@ -47,7 +47,7 @@
               ></el-option>
             </el-select>
           </el-form-item>
-					<el-form-item label="逆风出装">
+          <el-form-item label="逆风出装">
             <el-select v-model="model.items2" multiple>
               <el-option
                 v-for="item of items"
@@ -60,7 +60,8 @@
           <el-form-item label="头像">
             <el-upload
               class="avatar-uploader"
-              :action="$http.defaults.baseURL + '/upload'"
+              :action="uploadURL"
+              :headers="getAuthHeaders()"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload"
@@ -83,7 +84,8 @@
                 <el-form-item label="图标">
                   <el-upload
                     class="avatar-uploader"
-                    :action="$http.defaults.baseURL + '/upload'"
+                    :action="uploadURL"
+                    :headers="getAuthHeaders()"
                     :show-file-list="false"
                     :on-success="(res) => $set(item, 'icon', res.url)"
                   >
@@ -101,7 +103,9 @@
                   <el-input type="textarea" v-model="item.tips"></el-input>
                 </el-form-item>
                 <el-form-item>
-                  <el-button type="danger" @click="skillRemove(i)">删除</el-button>
+                  <el-button type="danger" @click="skillRemove(i)"
+                    >删除</el-button
+                  >
                 </el-form-item>
               </el-card>
             </el-col>
@@ -134,7 +138,7 @@ export default {
     };
   },
   methods: {
-		// 技能删除
+    // 技能删除
     skillRemove(i) {
       this.model.skills.splice(i, 1);
     },
@@ -160,7 +164,6 @@ export default {
       const res = await this.$http.get(`rest/heroes/${this.id}`);
       // this.model = res.data;
       this.model = Object.assign({}, this.model, res.data);
-
     },
     async fetchCategories() {
       const res = await this.$http.get("rest/categories");

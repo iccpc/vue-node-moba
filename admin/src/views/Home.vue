@@ -69,7 +69,7 @@
               <el-dropdown-item>删除</el-dropdown-item>
             </el-dropdown-menu>
           </el-dropdown>
-          <span>{{}}</span>
+          <span>{{}}scss</span>
         </el-header>
 
         <el-main>
@@ -103,10 +103,7 @@ export default {
     return {
       tableData: Array(20).fill(item),
     };
-  },
-	created() {
-		console.log(this.$route)
-	},
+  }
 };
 </script>
 

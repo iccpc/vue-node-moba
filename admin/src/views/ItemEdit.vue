@@ -12,7 +12,8 @@
       <el-form-item label="图片">
         <el-upload
           class="avatar-uploader"
-          :action="$http.defaults.baseURL + '/upload'"
+          :action="uploadURL"
+          :headers="getAuthHeaders()"
           :show-file-list="false"
           :on-success="handleAvatarSuccess"
           :before-upload="beforeAvatarUpload"
@@ -46,7 +47,7 @@ export default {
     },
     beforeAvatarUpload(file) {},
     async save() {
-      let res
+      let res;
       if (this.id) {
         res = await this.$http.put(`rest/items/${this.id}`, this.model);
       } else {
