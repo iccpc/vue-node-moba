@@ -4,12 +4,12 @@
       <el-table-column prop="_id" label="ID" width="220" />
       <el-table-column prop="parent.name" label="上级分类" width="180" />
       <el-table-column prop="name" label="名称" width="180" />
-      <el-table-column
+      <!-- <el-table-column
         prop="description"
         label="简介"
         show-overflow-tooltip
         width="180"
-      />
+      /> -->
       <el-table-column fixed="right" label="操作" width="100">
         <template slot-scope="scope">
           <el-button

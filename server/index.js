@@ -11,7 +11,7 @@ app.use(express.json())
 
 // 跨域配置项
 let corsOptions = {
-	origin: 'http://localhost:8080'  // 允许跨域-源地址
+	// origin: 'http://localhost:8080'  // 允许跨域-源地址
 }
 // 开启跨域
 app.use(require('cors')(corsOptions))

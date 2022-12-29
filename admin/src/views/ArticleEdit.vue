@@ -15,7 +15,7 @@
       <el-form-item label="标题">
         <el-input
           v-model="model.title"
-          maxlength="15"
+          maxlength="30"
           show-word-limit
         ></el-input>
       </el-form-item>
