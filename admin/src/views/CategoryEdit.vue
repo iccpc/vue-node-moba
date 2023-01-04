@@ -19,17 +19,6 @@
           show-word-limit
         ></el-input>
       </el-form-item>
-      <!-- <el-form-item label="描述">
-        <el-input
-          type="textarea"
-          :rows="6"
-          placeholder="相关介绍"
-          v-model="model.description"
-          show-word-limit
-          maxlength="200"
-        >
-        </el-input>
-      </el-form-item> -->
       <el-form-item>
         <el-button type="primary" native-type="submit">保存</el-button>
       </el-form-item>

@@ -38,6 +38,7 @@ module.exports = app => {
 		res.send(model)
 	})
 
+	
 	router.post('/', async (req, res) => {
 		const model = await req.Model.create(req.body)
 		res.send(model)
@@ -66,7 +67,7 @@ module.exports = app => {
 
 	const multer = require('multer') // 文件操作中间件
 	const upload = multer({ dest: __dirname + '/../../uploads' })
-	app.post('/admin/api/upload', authMiddleware(), upload.single('file'), async (req, res) => {
+	app.post('/admin/api/upload', upload.single('file'), async (req, res) => {
 		const file = req.file
 		file.url = `http://localhost:5000/uploads/${file.filename}`
 		res.send(file)
@@ -78,8 +79,8 @@ module.exports = app => {
 		const { username, password } = req.body
 		// 用户名等信息写入session
 		req.session.username = username
-		try {
-			// 1. 用户校验
+		try { 
+			// 1. 用户校验 
 			const user = await AdminUser.findOne({ username }).select('+password')
 			assert(user, 422, '用户不存在！')
 			// 2. 密码校验

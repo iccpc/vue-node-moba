@@ -1,0 +1,37 @@
+{
+  "id": "3844976",
+  "name": "vue-node",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon-",
+  "description": "",
+  "glyphs": [
+    {
+      "icon_id": "461892",
+      "name": "cd-icon-menu",
+      "font_class": "cdiconmenu",
+      "unicode": "e60a",
+      "unicode_decimal": 58890
+    },
+    {
+      "icon_id": "3522455",
+      "name": "目录",
+      "font_class": "mulu",
+      "unicode": "e608",
+      "unicode_decimal": 58888
+    },
+    {
+      "icon_id": "9648378",
+      "name": "User",
+      "font_class": "User",
+      "unicode": "e716",
+      "unicode_decimal": 59158
+    },
+    {
+      "icon_id": "11487978",
+      "name": "arrow-left",
+      "font_class": "arrow-left",
+      "unicode": "e743",
+      "unicode_decimal": 59203
+    }
+  ]
+}

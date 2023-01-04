@@ -1,26 +1,20 @@
 <template>
   <div>
     <swiper :options="swiperOption">
-      <swiper-slide>
-        <img class="w-100" src="../assets/images/20220526092258.jpeg" alt="" />
+      <swiper-slide v-for="(item, i) in swiperList.items" :key="i">
+        <img class="w-100" :src="item.image" alt="" />
       </swiper-slide>
-      <swiper-slide>
-        <img class="w-100" src="../assets/images/20220530093919.jpg" alt="" />
-      </swiper-slide>
-      <swiper-slide>
-        <img class="w-100" src="../assets/images/88555477841515.png" alt="" />
-      </swiper-slide>
-      <div
-        class="swiper-pagination pagination-home text-right px-3 pb-1"
-        slot="pagination"
-      ></div>
     </swiper>
     <!-- end of swiper -->
     <div class="nav-icons bg-white mt-3 text-center pt-3 text-grey-1">
       <div class="d-flex flex-wrap">
-        <div class="nav-item mb-3" v-for="n in 10" :key="n">
+        <div class="nav-item mb-3">
           <i class="sprite sprite-news"></i>
-          <div>爆料站</div>
+          <div>栈友</div>
+        </div>
+        <div class="nav-item mb-3">
+          <i class="sprite sprite-story"></i>
+          <div>图片集</div>
         </div>
       </div>
       <div class="bg-light py-2 fs-xs text-center">
@@ -29,25 +23,31 @@
       </div>
     </div>
     <!-- end of nav icons -->
-    <m-list-card icon="menu-1" title="新闻咨询" :categories="newsCats">
+    <m-list-card icon="mulu1" title="新闻咨询" :categories="newsCats">
       <template #items="{ category }">
-        <div
-          class="py-2 d-flex"
+        <router-link
+          tag="div"
+          :to="`/articles/${news._id}`"
+          class="py-2 d-flex ai-center"
           v-for="(news, i) in category.newsList"
           :key="i"
         >
-          <span class="text-info">[{{ news.categoryName }}]</span>
-          <span class="px-2">|</span>
-          <span class="flex-1 text-dark-1 text-ellipsis pr-4">{{ news.title }}</span>
-          <span class="text-light-1">{{ news.createdAt | date }}</span>
-        </div>
+          <span class="text-info text-border px-1">{{
+            news.categoryName
+          }}</span>
+          <span class="flex-1 text-dark-1 text-ellipsis pl-2 pr-4">{{
+            news.title
+          }}</span>
+          <span class="text-light-1 fs-xs">{{ news.createdAt | date }}</span>
+        </router-link>
       </template>
     </m-list-card>
-    <p>间距</p>
-    <p>间距</p>
-    <p>间距</p>
-    <p>间距</p>
-    <p>间距</p>
+    <m-list-card title="社区推荐" icon="">
+      <template #items>
+        <div>正在开发中...</div>
+      </template>
+    </m-list-card>
+    <m-tabbar class="mt-4"> </m-tabbar>
   </div>
 </template>
 
@@ -68,6 +68,7 @@ export default {
         },
       },
       newsCats: [],
+      swiperList: [],
     };
   },
   methods: {
@@ -75,9 +76,14 @@ export default {
       const res = await this.$http.get("news/list");
       this.newsCats = res.data;
     },
+    async fetchSwipers() {
+      const res = await this.$http.get("swiper");
+      this.swiperList = res.data;
+    },
   },
   created() {
     this.fetchNewsCats();
+    this.fetchSwipers();
   },
 };
 </script>

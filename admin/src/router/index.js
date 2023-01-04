@@ -19,6 +19,9 @@ import ArticleList from '../views/ArticleList'
 import AdEdit from '../views/AdEdit'
 import AdList from '../views/AdList'
 
+import UserEdit from '../views/UserEdit'
+import UserList from '../views/UserList'
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -26,9 +29,7 @@ const routes = [
 		path: '/login',
 		name: 'login',
 		component: Login,
-		meta: {
-			isPublic: true
-		}
+		meta: { isPublic: true }
 	}, {
 		path: '/',
 		name: 'home',
@@ -40,19 +41,23 @@ const routes = [
 
 			{ path: '/items/create', component: ItemEdit },
 			{ path: '/items/edit/:id', component: ItemEdit, props: true }, // 将页面的id通过地址注入页面
-			{ path: '/items/list', component: ItemList, props: true },
+			{ path: '/items/list', component: ItemList},
 
 			{ path: '/heroes/create', component: HeroEdit },
 			{ path: '/heroes/edit/:id', component: HeroEdit, props: true }, // 将页面的id通过地址注入页面
-			{ path: '/heroes/list', component: HeroList, props: true },
+			{ path: '/heroes/list', component: HeroList },
 
 			{ path: '/articles/create', component: ArticleEdit },
 			{ path: '/articles/edit/:id', component: ArticleEdit, props: true }, // 将页面的id通过地址注入页面
-			{ path: '/articles/list', component: ArticleList, props: true },
+			{ path: '/articles/list', component: ArticleList},
 
 			{ path: '/ads/create', component: AdEdit },
 			{ path: '/ads/edit/:id', component: AdEdit, props: true }, // 将页面的id通过地址注入页面
-			{ path: '/ads/list', component: AdList, props: true },
+			{ path: '/ads/list', component: AdList },
+
+			{ path: '/users/create', component: UserEdit },
+			{ path: '/users/edit/:id', component: UserEdit, props: true },
+			{ path: '/users/list', component: UserList },
 		]
 	}
 ]

@@ -52,10 +52,6 @@ export default {
   },
   methods: {
     async handleImageAdded(file, Editor, cursorLocation, resetUploader) {
-      // An example of using FormData
-      // NOTE: Your key could be different such as:
-      // formData.append('file', file)
-
       const formData = new FormData();
       formData.append("file", file);
 

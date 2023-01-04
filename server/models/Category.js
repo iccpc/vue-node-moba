@@ -6,12 +6,12 @@ const mongoose = require('mongoose')
 const schema = new mongoose.Schema({
 	name: { type: String },
 	parent: { type: mongoose.Schema.Types.ObjectId, ref: 'Category' },
-	// description: { type: String },
 })
 
+// 虚拟子表
 schema.virtual('chilren', {
-	localField: '_id',
-	foreignField: 'parent',
+	localField: '_id', // 
+	foreignField: 'parent', // 外键
 	justOne: false,
 	ref: 'Category'
 })

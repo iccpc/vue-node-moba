@@ -7,7 +7,6 @@
       >
         <el-menu
           router
-          :default-openeds="['1']"
           unique-opened
           :default-active="$route.path"
         >
@@ -21,15 +20,15 @@
               <el-menu-item index="/categories/list">分类列表</el-menu-item>
             </el-menu-item-group>
             <el-menu-item-group>
-              <template slot="title">物品</template>
-              <el-menu-item index="/items/create">新增物品</el-menu-item>
-              <el-menu-item index="/items/list">物品列表</el-menu-item>
+              <template slot="title">图片</template>
+              <el-menu-item index="/items/create">新增图片</el-menu-item>
+              <el-menu-item index="/items/list">图片列表</el-menu-item>
             </el-menu-item-group>
-            <el-menu-item-group>
+            <!-- <el-menu-item-group>
               <template slot="title">英雄</template>
               <el-menu-item index="/heroes/create">新增英雄</el-menu-item>
               <el-menu-item index="/heroes/list">英雄列表</el-menu-item>
-            </el-menu-item-group>
+            </el-menu-item-group> -->
             <el-menu-item-group>
               <template slot="title">文章</template>
               <el-menu-item index="/articles/create">新增文章</el-menu-item>
@@ -52,8 +51,8 @@
             >
             <el-menu-item-group>
               <template slot="title">设置</template>
-              <el-menu-item index="/ads/create">全局配置</el-menu-item>
-              <el-menu-item index="/ads/list">参数</el-menu-item>
+              <el-menu-item index="/users/create">添加管理员</el-menu-item>
+							<el-menu-item index="/users/list">管理员列表</el-menu-item>
             </el-menu-item-group>
           </el-submenu>
         </el-menu>

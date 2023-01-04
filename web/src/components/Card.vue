@@ -5,6 +5,7 @@
       <div class="fs-xl flex-1 px-2">
         <strong>{{ title }}</strong>
       </div>
+      <i class="iconfont icon-cdiconmenu"></i>
     </div>
     <div class="card-body pt-3">
       <slot></slot>

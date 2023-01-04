@@ -9,10 +9,10 @@
       <el-form-item label="密码">
         <el-input type="password" v-model="model.password"></el-input>
       </el-form-item>
-      <el-form-item label="验证码">
+      <!-- <el-form-item label="验证码">
         <el-input type="password" v-model="model.check"></el-input>
         <div><span v-html="model.svg"></span></div>
-      </el-form-item>
+      </el-form-item> -->
       <el-form-item>
         <el-button type="primary" @click="login()">登录</el-button>
       </el-form-item>
@@ -58,6 +58,6 @@ export default {
   margin: 120px auto;
   padding: 5px 15px;
   width: 300px;
-  height: 420px;
+  height: 320px;
 }
 </style>

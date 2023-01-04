@@ -9,9 +9,9 @@
           show-word-limit
         ></el-input>
       </el-form-item>
-      <el-form-item label="广告">
+      <el-form-item label="幕布">
         <el-button @click="model.items.push({})"
-          ><i class="el-icon-plus"></i>添加广告</el-button
+          ><i class="el-icon-plus"></i>添加图片</el-button
         >
         <el-row>
           <el-col :md="24" v-for="(item, i) in model.items" :key="i">
